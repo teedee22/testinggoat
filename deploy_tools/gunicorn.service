@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+Requires=superlists-staging.tobyd.net.socket
+After=network.target
+
+[Service]
+User=toby
+Group=www-data
+WorkingDirectory=/home/toby/sites/superlists-staging.tobyd.net
+ExecStart=/home/toby/sites/superlists-staging.tobyd.net/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/superlists-staging.tobyd.net.sock \
+          superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

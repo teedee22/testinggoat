@@ -1,0 +1,8 @@
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/superlists-staging.tobyd.net.sock
+
+[Install]
+WantedBy=sockets.target
